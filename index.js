@@ -3,6 +3,10 @@ const session = require('express-session');
 const path = require('path');
 const routes = require('./routes');
 const app = express();
+const env = require('dotenv');
+
+//env settings
+env.config();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -28,5 +32,5 @@ app.use(routes);
 //     console.log(err);
 //     return res.send('Internal Server Error');
 // });
-
-app.listen(3000, () => console.log('Server is runngin on port 3000'));
+console.log(process.env.PORT);
+app.listen(process.env.PORT || 3000, () => console.log('Server is runngin on port 3000'));
